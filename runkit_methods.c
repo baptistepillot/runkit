@@ -129,10 +129,14 @@ int php_runkit_fetch_class(const char *classname, int classname_len, zend_class_
 		return FAILURE;
 	}
 
-	if (ce->type != ZEND_USER_CLASS) {
-		php_error_docref(NULL TSRMLS_CC, E_WARNING, "class %s is not a user-defined class", classname);
-		return FAILURE;
-	}
+/*
+ * It works when commented, but you must undo everything you do on internal classes before the end of the
+ * PHP script, otherwise your php process will crash next scripts execution !
+ */
+//	if (ce->type != ZEND_USER_CLASS) {
+//		php_error_docref(NULL TSRMLS_CC, E_WARNING, "class %s is not a user-defined class", classname);
+//		return FAILURE;
+//	}
 
 #ifdef ZEND_ENGINE_2
 	if (ce->ce_flags & ZEND_ACC_INTERFACE) {
@@ -201,10 +205,14 @@ TSRMLS_DC)
 		return FAILURE;
 	}
 
-	if (ce->type != ZEND_USER_CLASS) {
-		php_error_docref(NULL TSRMLS_CC, E_WARNING, "class %s is not a user-defined class", classname);
-		return FAILURE;
-	}
+/*
+ * It works when commented, but you must undo everything you do on internal classes before the end of the
+ * PHP script, otherwise your php process will crash next scripts execution !
+ */
+//	if (ce->type != ZEND_USER_CLASS) {
+//		php_error_docref(NULL TSRMLS_CC, E_WARNING, "class %s is not a user-defined class", classname);
+//		return FAILURE;
+//	}
 
 	if (pce) {
 		*pce = ce;
@@ -225,11 +233,15 @@ TSRMLS_DC)
 		return FAILURE;
 	}
 
-	if (fe->type != ZEND_USER_FUNCTION) {
-		php_error_docref(NULL TSRMLS_CC, E_WARNING, "%s::%s() is not a user function", classname, fname);
-		efree(fname_lower);
-		return FAILURE;
-	}
+/*
+ * It works when commented, but you must undo everything you do on internal classes before the end of the
+ * PHP script, otherwise your php process will crash next scripts execution !
+ */
+//	if (fe->type != ZEND_USER_FUNCTION) {
+//		php_error_docref(NULL TSRMLS_CC, E_WARNING, "%s::%s() is not a user function", classname, fname);
+//		efree(fname_lower);
+//		return FAILURE;
+//	}
 
 	if (pfe) {
 		*pfe = fe;
